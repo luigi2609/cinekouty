@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        .output {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+Hello world!
+
+
+<button onclick="run()">Run</button>
+<input class="input" type="text" placeholder="Array" value="[array]"/>
+<div class="output"></div>
+
+<script>
+    const output = document.querySelector('.output');
+    const input = document.querySelector('.input');
+    output.style.border = '1px solid red';
+    output.style.padding = '3px';
+
+    function max(v) {
+        var vect = v.slice(0);
+        var massimo = vect[0];
+        for (var i = 1; i < vect.length; i++) {
+            massimo = (massimo > vect[i]) ? massimo : vect[i];
+        }
+        return massimo;
+    }
+
+    function run() {
+        const values = JSON.parse(input.value);
+        var ordered = [];
+        var a;
+        const len = values.length;
+        for (let i = 0; i < len; i++) {
+            a = max(values);
+            values.splice(values.indexOf(a), 1);
+            ordered[i] = a;
+        }
+        console.log(ordered);
+        output.innerHTML = ordered;
+    }
+
+</script>
+</body>
+</html>

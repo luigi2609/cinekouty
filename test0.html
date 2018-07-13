@@ -14,7 +14,7 @@
 Hello world!
 
 <button onclick="run()">Run</button>
-<input class="input" type="text" placeholder="Array" value="[1,3,2]"/>
+<input class="input" type="text" placeholder="Array" value="[array]"/>
 <div class="output"></div>
 
 <script>
@@ -22,12 +22,13 @@ Hello world!
   const input = document.querySelector('.input');
 
   function run() {
-    const values = JSON.parse(input.value);
-    console.log(values);
-    output.innerHTML = values;
-    output.style.border = '1px solid red';
-    output.style.padding = '3px';
+      const values = JSON.parse(input.value);
+      console.log(values);
+      output.innerHTML = values;
+      output.style.border = '1px solid red';
+      output.style.padding = '3px';
   }
+  
 </script>
 </body>
 </html>
