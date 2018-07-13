@@ -15,6 +15,7 @@ Hello world!
 
 
 <button onclick="run()">Run</button>
+<button onclick="update()">Update chat</button>
 <input class="input" type="text" placeholder="Array" value="[array]"/>
 <div class="output"></div>
 
@@ -45,6 +46,15 @@ Hello world!
         }
         console.log(ordered);
         output.innerHTML = ordered;
+
+    }
+
+    async function update() {
+        const response = await fetch('/api/chat/');
+        console.log(response);
+        const content = await response.json();
+        console.log(content);
+        output.innerHTML = content;
     }
 
 </script>
