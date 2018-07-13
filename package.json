@@ -1,0 +1,26 @@
+{
+  "name": "cinekouty",
+  "version": "1.0.0",
+  "description": "Kouty Cinelli tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luigi2609/cinekouty.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luigi2609/cinekouty/issues"
+  },
+  "homepage": "https://github.com/luigi2609/cinekouty#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
