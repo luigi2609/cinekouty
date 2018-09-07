@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="toMove" style="position: absolute;">A</div>
+
+<script>
+    const toMove = document.querySelector('#toMove');
+
+    const a = -0.0001;
+    const vy = 0.1;
+    const vx = 0.1;
+
+    function y(t) {
+        return 0.5 * (t ** 2) * a + t * vy;
+    }
+
+    function x(t) {
+        return vx * t;
+    }
+
+    let startTime = undefined;
+
+    function animationStep(t) {
+        if(startTime === undefined) {
+            startTime = t;
+        }
+
+        const dT = t - startTime;
+
+        if(dT <= 3000) {
+            requestAnimationFrame(animationStep);
+        }
+
+        //console.log(x(t), y(t));
+        toMove.style.top = y(t) + 'px';
+        toMove.style.left = x(t) + 'px';
+
+    }
+
+    requestAnimationFrame(animationStep);
+
+</script>
+</body>
+</html>

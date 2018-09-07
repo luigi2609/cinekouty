@@ -1,20 +1,44 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
 app.use(express.static('client'));
 app.use(express.json());
+app.use(bodyParser.json());
 
-app.get('/api/hello', (req, res) => {
+
+app.get('/chat', (req, res)=>{
+    fs.readFile('client/chat.html', 'utf8', (err, data) => {
+        if (err) throw err;
+
+        res.send(''+data);
+    });
+
+});
+
+app.get('/hello', (req, res) => {
     res.send('Hello world');
 });
 
+const messages=[];
 
-// 1° creare get su /api/chat e rispondere contenut messages
-const messages = ['Ciao', 'Come va?', 'Tutto bene grazie!'];
-// Usare res.json(messages);
+app.get('/message', (req, res) => {
+
+    res.json(messages);
+});
+
+app.post('/message', (req, res) => {
+
+    console.log(req.headers);
+    console.log(req.body);
+
+    messages.push(req.body.msg);
+
+    res.json();
+});
 
 
-// 2° create post su /api/chat e aggiungere il messaggio a messages array
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');

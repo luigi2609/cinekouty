@@ -6,7 +6,7 @@
 </head>
 <body>
 <img src="/an-image.jpeg" style="width:50px">
-<input id="input" type="text"/>
+<input id="aaa" type="text"/>
 <button onclick="sendMessage()">Send</button>
 
 <div>Messaggi:</div>
@@ -23,6 +23,7 @@
         console.log(messages);
 
         const messageList = document.querySelector('.messageList');
+
         // TODO: svuotare messageList: messageList.innerHTML = ''
         // TODO: cicla i messaggi e mettili nell html
         // 1) creazione contenitori: document.createElement('div')
@@ -35,7 +36,7 @@
 
 
     function sendMessage() {
-        const input = document.querySelector('#input');
+        const input = document.querySelector('#aaa');
         fetch('/message/', {
             method: 'POST',
             body: JSON.stringify({msg: input.value}),
