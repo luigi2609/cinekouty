@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Chat</title>
+  <meta charset="UTF-8">
+  <title>Chat</title>
 </head>
 <body>
 <img src="/an-image.jpeg" style="width:50px">
@@ -11,43 +11,48 @@
 
 <div>Messaggi:</div>
 <div class="messageList">
-    <!-- qui dentro ci andranno i messaggi -->
+  <!-- qui dentro ci andranno i messaggi -->
 </div>
 
 <script>
-    async function fetchMessages() {
-        const response = await fetch('/message/', {
-            method: 'GET'
-        });
-        const messages = await response.json();
-        console.log(messages);
+  async function fetchMessages() {
+    const response = await fetch('/message/', {
+      method: 'GET'
+    });
+    const messages = await response.json();
+    console.log(messages);
 
-        const messageList = document.querySelector('.messageList');
-
-        // TODO: svuotare messageList: messageList.innerHTML = ''
-        // TODO: cicla i messaggi e mettili nell html
-        // 1) creazione contenitori: document.createElement('div')
-        // 2) per immettere testo in un div: div.innerHTML = 'testo che voglio visualizzare'
-        // 3) per mettere un div dentro .messageList: messageList.appendChild(div)
-
+    const messageList = document.querySelector('.messageList');
+    messageList.innerHTML = '';
+    for (var i = 0; i < messages.length; i++) {
+      const div = document.createElement('div');
+      div.innerHTML = messages[i];
+      messageList.appendChild(div);
     }
+    // TODO: svuotare messageList: messageList.innerHTML = ''
+    // TODO: cicla i messaggi e mettili nell html
+    // 1) creazione contenitori: document.createElement('div')
+    // 2) per immettere testo in un div: div.innerHTML = 'testo che voglio visualizzare'
+    // 3) per mettere un div dentro .messageList: messageList.appendChild(div)
 
-    fetchMessages();
+  }
+
+  fetchMessages();
 
 
-    function sendMessage() {
-        const input = document.querySelector('#aaa');
-        fetch('/message/', {
-            method: 'POST',
-            body: JSON.stringify({msg: input.value}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((response) => {
-            fetchMessages();
-            console.log(response.status);
-        })
-    }
+  function sendMessage() {
+    const input = document.querySelector('#aaa');
+    fetch('/message/', {
+      method: 'POST',
+      body: JSON.stringify({ msg: input.value }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      fetchMessages();
+      console.log(response.status);
+    })
+  }
 </script>
 </body>
 </html>
